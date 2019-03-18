@@ -1,0 +1,47 @@
+{
+  "name": "players",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "player_id": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "flat": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number"
+    },
+    "category": {
+      "type": "string"
+    },
+    "teamId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "default": null
+    }
+  },
+  "validations": [],
+  "relations": {
+    "teams": {
+      "type": "belongsTo",
+      "model": "teams",
+      "foreignKey": "teamsId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

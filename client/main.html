@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-center m-2" style="background-color: black;">
+  <div class="container-fluid" style="background-color: black;">
+    <div class="row p-4" style="margin-top:-45px;">
+      <div class="text-center col-md-4" style="margin-top:55px; height: 187px; width: 330px;">
+        <img src="/images/players/{{player.image}}" style="height: -webkit-fill-available;" class="rounded img-fluid" alt="...">
+      </div>
+
+      <div class="col-md-4" style="padding-left: 70px; padding-top: 55px; font-family: open sans; font-size: 32px; font-weight: 900; color: white;">
+        <div>
+          <span>Name: {{player.name}}</span>
+        </div>
+
+        <div>
+          <span>Tower: {{player.flat}}</span>
+        </div>
+        <div>
+          <span>Category: {{player.category}}</span>
+        </div>
+
+        <div>
+          <span>Base Points: {{player.price}}</span>
+        </div>
+      </div>
+
+      <div class="col-md-3" style="text-align: center">
+        <span style="font-size: 100px; font-weight: 900; color: white;">
+          {{currentBid}}
+        </span>
+        <span class="badge badge-primary" style="font-size: 20px; margin-left: -20px;" ng-if="currentBid">
+          +<span ng-if="currentBid && currentBid < 170">5</span><span ng-if="currentBid > 165">10</span>
+        </span>          
+        <div class="alert alert-success" style="margin-top: 60px;" role="alert" ng-if="player.status === 'Sold'">
+         Sold to <strong>{{player.teams.name}}</strong>
+        </div>
+        <div class="alert alert-danger" style=" margin-top: 60px;" role="alert" ng-if="player.status === 'UnSold'">
+          Unsold
+        </div>
+        <br />
+        <!-- <button type="button" class="btn btn-info">Raise</button> -->
+        <button type="button" class="btn btn-success" ng-disabled="!selectedTeam || player.status=='Sold'" ng-click="Sold()">Sold</button>
+        <button type="button" class="btn btn-warning" ng-disabled="player.status=='UnSold' || player.status=='Sold'" ng-click="UnSold()">UnSold</button>
+        <a type="button" class="btn btn-info" href="/teams">Teams</a>
+        <form style="display: inline;" ng-submit="getPlayer()">
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="nextPlayerId" style="margin: 10px auto; width: 210px;">
+          </div>
+        </form>
+        
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+      <div class="card-deck col-md-12">
+        <div class="card" style="background-color: #fbfbfb; margin: auto 2px;" ng-click="isBidding(0)">
+          <video class="card-img-top" style="height: 150px;" autoplay loop>
+            <source src="/images/RS.mp4" type="video/mp4">
+          </video>
+          <!-- <img class="card-img-top" style="height: 150px;" src="/images/1.png" alt="Card image cap"> -->
+          <span class="badge badge-pill badge-primary" style="font-size:20px; height:36px; width: 15%; position: absolute; padding: 6px; left: 5px; top: 5px;">{{teams[0].players.length}}</span>
+          <div class="card-body" style="padding-bottom: 15px;" ng-style="{'background-color': selectedTeam.team_id=='1' ? 'skyblue' : '#fff'}">
+            <h5 class="card-title" style="font-size: 25px; font-weight: 900; text-align: center; color: #0003a5">Palm Rising Stars</h5>
+            <p class="card-text" style="font-size: 95px; text-align: center; margin: -36px 0;">{{teams[0].budget}}</p>
+          </div>
+        </div>
+        <div class="card" style="background-color: #fbfbfb;" ng-click="isBidding(1)">
+          <video class="card-img-top" style="height: 150px;" autoplay loop>
+            <source src="/images/CH.mp4" type="video/mp4">
+          </video>
+          <!-- <img class="card-img-top" style="height: 150px;" src="/images/2.png" alt="Card image cap"> -->
+          <span class="badge badge-pill badge-primary" style="font-size:20px; height:36px; width: 15%; position: absolute; padding: 6px; left: 5px; top: 5px;">{{teams[1].players.length}}</span>
+          <div class="card-body" style="padding-bottom: 15px;" ng-style="{'background-color': selectedTeam.team_id=='2' ? 'skyblue' : '#fff'}">
+            <h5 class="card-title" style="font-size: 25px; font-weight: 900; text-align: center; color: #ff7e2d">Palm Warriors</h5>
+            <p class="card-text" style="font-size: 95px; text-align: center; margin: -36px 0;">{{teams[1].budget}}</p>
+          </div>
+        </div>
+        <div class="card" style="background-color: #fbfbfb;" ng-click="isBidding(2)">
+          <video class="card-img-top" style="height: 150px;" autoplay loop>
+            <source src="/images/ST.mp4" type="video/mp4">
+          </video>
+          <!-- <img class="card-img-top" style="height: 150px;" src="/images/3.png" alt="Card image cap"> -->
+          <span class="badge badge-pill badge-primary" style="font-size:20px; height:36px; width: 15%; position: absolute; padding: 6px; left: 5px; top: 5px;">{{teams[2].players.length}}</span>
+          <div class="card-body" style="padding-bottom: 15px;" ng-style="{'background-color': selectedTeam.team_id=='3' ? 'skyblue' : '#fff'}">
+            <h5 class="card-title" style="font-size: 25px; font-weight: 900; text-align: center; color: #005121">Palm Challengers</h5>
+            <p class="card-text" style="font-size: 95px; text-align: center; margin: -36px 0;">{{teams[2].budget}}</p>
+          </div>
+        </div>
+        <div class="card" style="background-color: #fbfbfb;" ng-click="isBidding(3)">
+          <video class="card-img-top" style="height: 150px;" autoplay loop>
+            <source src="/images/WR.mp4" type="video/mp4">
+          </video>
+          <!-- <img class="card-img-top" style="height: 150px;" src="/images/4.png" alt="Card image cap"> -->
+          <span class="badge badge-pill badge-primary" style="font-size:20px; height:36px; width: 15%; position: absolute; padding: 6px; left: 5px; top: 5px;">
+{{teams[3].players.length}}
+          </span>
+          <div class="card-body" style="padding-bottom: 15px;" ng-style="{'background-color': selectedTeam.team_id=='4' ? 'skyblue' : '#fff'}">
+            <h5 class="card-title" style="font-size: 25px; font-weight: 900; text-align: center; color: red">Palm Strikers</h5>
+            <p class="card-text" style="font-size: 95px; text-align: center; margin: -36px 0;">{{teams[3].budget}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

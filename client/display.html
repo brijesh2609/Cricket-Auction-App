@@ -1,0 +1,32 @@
+<div class="container" ng-init="getCarousel()">
+    <div class="row">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="height: 550px">
+                    <img style="height: 400px;" class="d-block w-100" src="/images/1.png">
+                </div>
+
+                <div class="carousel-item" ng-repeat="player in caraousel" style="height: 550px">
+                    <img style="height: 400px;" class="d-block w-100" src="/images/players/{{player.image}}">
+                    <div class="carousel-caption d-none d-md-block tpacl-caption">
+                        <div class="card" style="width:100%; margin: 3px; margin-right: 0">
+                            <div class="card-body d-flex flex-column">
+                                <div class="d-flex align-items-center pb-2">
+                                    <span class="avatar avatar-xl" style="background-image: url(/images/{{player.teams.image}})"></span>
+                                    <div>
+                                        <h4 style="color: black">{{player.name}}</h4>
+                                        <strong class="d-block text-muted" style="margin-top:-5px;">
+                                            {{player.flat}}
+                                            <span style="margin-left:20px; color: green;">{{player.category}}</span>
+                                            <span style="margin-left:20px; color: black;">{{player.price}}</span>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TPACL">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TPACL</title>
+
+  <script src="/modules/angular/angular.min.js"></script>
+  <script src="/modules/angular-route/angular-route.min.js"></script>
+
+  <script src="/modules/jquery/dist/jquery.min.js"></script>
+  <!-- <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>   -->
+  <script src="/modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="/modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/dashboard.css">
+
+  <script src="index.js"></script>
+
+  <base href="/">
+
+  <style>
+    body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .main {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      padding-right: 17px;
+      /* Increase/decrease this value for cross-browser compatibility */
+      box-sizing: content-box;
+      /* So the width will be 100% + 17px */
+    }
+
+    .card-body{
+      padding: 10px;
+    }
+
+    .card-header{
+      padding: 0 15px;
+    }
+  </style>
+</head>
+
+<body ng-controller="tcontroller" style="background-color: black;">
+  <div ng-view class="mt-2 main"></div>
+</body>
+
+</html>
